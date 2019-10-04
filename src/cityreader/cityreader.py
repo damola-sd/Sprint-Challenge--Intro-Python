@@ -20,6 +20,7 @@ class City:
 # Note that the first line of the CSV is header that describes the fields--this
 # should not be loaded into a City object.
 import csv
+# import numpy Cannot import
 cities = []
 
 def cityreader(cities=[]):
@@ -81,10 +82,18 @@ for c in cities:
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # within will hold the cities that fall within the specified region
   
+    
   within = []
+  for city in cities:
+    # print(city.lat)
+    # city.lat in numpy.arange(lat1, lat2) and city.lat in numpy.arange(lon1, lon2) Can't use Numpy yet
+    if ( lon1 <= city.lon <= lon2 and round(city.lon,2)==city.lon and lat1 <= city.lat <= lat2 and round(city.lat,2)==city.lat):
+      within.append(city)
 
   # TODO Ensure that the lat and lon valuse are all floats
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
 
   return within
+# cityreader(cities)
+cityreader_stretch(45, -100, 32, -120, cityreader())
